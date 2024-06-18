@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-  <html lang="fr"> 
-    <head>
-      <title>FishSeek | Poissons</title>
-      <?php
 
-      include 'assets/infos.php'
-
-      ?>
-    </head>
-    <body>
-        <?php 
-
-        include 'assets/menu.php';
-
-        ?>
-        </div>
         <section>
             <div class="cards">
                     <img src="images/carpe.png"/>
@@ -42,5 +26,3 @@
                     <p>Carassin</p>
             </div>
         </section>
-    </body>
-  </html>

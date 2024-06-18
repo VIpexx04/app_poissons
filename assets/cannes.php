@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-  <html lang="fr"> 
-    <head>
-      <title>FishSeek | Cannes</title>
-      <?php
 
-      include 'assets/infos.php'
-
-      ?>
-    </head>
-    <body>
-        <?php 
-
-        include 'assets/menu.php';
-
-        ?>
         <section>
             <div class="cards">
                     <img src="images/canne1.png"/>
@@ -28,5 +13,3 @@
                     <p>Canne à Mouche</p>
             </div>
         </section>
-    </body>
-  </html>
