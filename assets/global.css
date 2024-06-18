@@ -61,62 +61,19 @@ input[type="search"] {
     text-align: center;
     padding: 20px;
     width: 30%;
-    background-color: #FFF;
-    height: 200px; 
+    background-color: #000;
+    height: 420px; 
+}
+
+.cards p {
+    color: #fff;
+    letter-spacing: 0.05rem;
+    float: center;
 }
 
 .cards img {
-    float: left;
-    text-align: center;
-    padding: 0px;
     width: 100%;
-}
-
-.cards2 {
-    float: left;
-    text-align: center;
-    padding: 20px;
-    width: 30%;
-    background-color: #FFF;
-    height: 200px; 
-}
-
-.cards2 img {
-    float: center;
-    text-align: center;
-    padding: 0px;
-    width: 65%;
-}
-
-.cards3 {
-    float: left;
-    text-align: center;
-    padding: 20px;
-    width: 30%;
-    background-color: #FFF;
-    height: 200px; 
-}
-
-.cards3 img {
-    float: center;
-    text-align: center;
-    padding: 0px;
-    width: 50%;
-}
-
-.cards4 {
-    float: left;
-    text-align: center;
-    padding: 20px;
-    width: 30%;
-    background-color: #FFF;
-    height: 200px; 
-}
-
-.cards4 img {
-    float: center;
-    text-align: center;
-    padding: 0px;
-    width: 40%;
+    height: auto; 
+    object-fit: cover; 
 }
 
