@@ -1,0 +1,122 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-size: 100%;
+    background-image: url("background.jpg");
+}
+
+.header {
+    background-color: #000;
+    height: 80px;
+    margin: 10px;
+}
+
+.header2 {
+    background-color: #000;
+    height: 80px;
+    margin: 10px;
+}
+
+nav ul li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+ul li a {
+    color: #fff;
+    letter-spacing: 0.05rem;
+}
+
+ul li h3 {
+    color: #fff;
+    letter-spacing: 0.05rem;
+    float: center;
+}
+
+ul li a:hover {
+    color: rgb(187, 185, 185);
+    text-decoration: underline;
+}
+
+.navbar li {
+    float: left;
+    padding: 35px;
+}
+
+.navbar li a {
+    text-decoration: none;
+}
+
+form {
+    padding: 35px;
+    text-align: right;
+}
+
+input[type="search"] {
+    font-size: 17px;
+}
+
+.cards {
+    float: left;
+    text-align: center;
+    padding: 20px;
+    width: 30%;
+    background-color: #FFF;
+    height: 200px; 
+}
+
+.cards img {
+    float: left;
+    text-align: center;
+    padding: 0px;
+    width: 100%;
+}
+
+.cards2 {
+    float: left;
+    text-align: center;
+    padding: 20px;
+    width: 30%;
+    background-color: #FFF;
+    height: 200px; 
+}
+
+.cards2 img {
+    float: center;
+    text-align: center;
+    padding: 0px;
+    width: 65%;
+}
+
+.cards3 {
+    float: left;
+    text-align: center;
+    padding: 20px;
+    width: 30%;
+    background-color: #FFF;
+    height: 200px; 
+}
+
+.cards3 img {
+    float: center;
+    text-align: center;
+    padding: 0px;
+    width: 50%;
+}
+
+.cards4 {
+    float: left;
+    text-align: center;
+    padding: 20px;
+    width: 30%;
+    background-color: #FFF;
+    height: 200px; 
+}
+
+.cards4 img {
+    float: center;
+    text-align: center;
+    padding: 0px;
+    width: 40%;
+}
+
