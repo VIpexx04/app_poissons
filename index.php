@@ -1,32 +1,45 @@
-
 <!DOCTYPE html>
-  <html lang="fr"> 
+<html lang="fr"> 
     <head>
-      <title>FishSeek | Accueil</title>
-      <?php
-
-      include 'assets/infos.php'
-
-      ?>
-    </head>
+        <?php
+        if (!empty($_GET['page'])) {
+            switch ($_GET['page']) {
+                case 'accueil':
+                    $title = "Accueil";
+                    break;
+                case 'appats':
+                    $title = "Appâts";
+                    break;
+                case 'cannes':
+                    $title = "Cannes";
+                    break;
+                case 'poissons':
+                    $title = "Poissons";
+                    break;
+                default:
+                    $title = "Accueil";
+                    break;
+            }
+        }
+        ?>
+        <title> FishSeek | <?php echo $title; ?></title>
+        <?php include 'assets/infos.php'; ?>
+    <head>
     <body>
-
-        <?php 
-
+    <?php 
         include 'assets/menu.php';
 
         if (!empty($_GET['page']) && $_GET['page'] == 'appats') {
-            include 'assets/appats.php';
+            include 'views/appats.php';
         } elseif (!empty($_GET['page']) && $_GET['page'] == 'accueil') {
-            include 'assets/accueil.php';
+            include 'views/accueil.php';
         } elseif (!empty($_GET['page']) && $_GET['page'] == 'cannes') {
-            include 'assets/cannes.php';
+            include 'views/cannes.php';
         } elseif (!empty($_GET['page']) && $_GET['page'] == 'poissons') {
-            include 'assets/poissons.php';
+            include 'views/poissons.php';
         } else {
-            include 'assets/accueil.php';
+            include 'views/accueil.php';
         }
-
-        ?> 
+    ?>
     </body>
   </html>
