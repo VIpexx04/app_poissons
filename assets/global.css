@@ -2,7 +2,16 @@ body {
     margin: 0px;
     padding: 0px;
     background-size: 100%;
-    background-image: url("background.jpg");
+    background-image: url("images/background.jpg");
+}
+
+.connexion {
+    float: center;
+    text-align: center;
+    padding: 20px;
+    width: 30%;
+    background-color: #000;
+    height: 420px; 
 }
 
 .header {
@@ -76,4 +85,5 @@ input[type="search"] {
     height: auto; 
     object-fit: cover; 
 }
+
 

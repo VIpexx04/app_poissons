@@ -9,6 +9,8 @@ function Titres($page) {
             return "Cannes";
         case 'poissons':
             return "Poissons";
+        case 'connexion':
+            return "Connexion";
         default:
             return "Accueil";
     }
@@ -27,6 +29,9 @@ function Vues($page) {
             break;
         case 'poissons':
             include 'views/poissons.php';
+            break;
+        case 'connexion':
+            include 'views/connexion.php';
             break;
         default:
             include 'views/accueil.php';
