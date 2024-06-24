@@ -35,9 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
 </head>
 <body>
     <?php include 'assets/menu.php'; ?>
-
     <?php Vues($page); ?>
-
     <?php if ($Connected): ?>
         <div class="header2">
             <nav>
@@ -76,8 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
                     <li>
                         <h3>
                             <em>
-                                <form action="index.php?page=connexion" method="post">
-                                    
+                                <form action="index.php?page=login" method="post">
                                 »» Adresse Mail ««<br>
                                 <input type="text" name="email" required><br>
                                 »» Mot de passe ««<br>
@@ -86,6 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
                                 </form>
                             </em>
                         </h3>
+                        <h5>
+                            <li><a href="index.php?page=register">Pas de compte ?</a></li>
+                        </h5>
                     </li>
                 </ul>
             </nav>

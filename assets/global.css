@@ -42,6 +42,12 @@ ul li h3 {
     float: center;
 }
 
+ul li h5 {
+    color: #fff;
+    letter-spacing: 0.05rem;
+    float: center;
+}
+
 ul li a:hover {
     color: rgb(187, 185, 185);
     text-decoration: underline;
