@@ -2,7 +2,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-size: 100%;
-    background-image: url("images/background.jpg");
+    background-image: url("../images/background.jpg");
 }
 
 .connexion {

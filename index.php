@@ -1,30 +1,20 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once 'assets/functions.php';
 
 $page = !empty($_GET['page']) ? $_GET['page'] : 'accueil';
 $title = Titres($page);
 
-$Connected = false;
-$email = '';
-if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
-    $users = [
-        'xzfamilly09@gmail.com' => 'Tymeo2008*',
-    ];
-
-    $email = $_COOKIE['email'];
-    $password = $_COOKIE['password'];
-
-    if (isset($users[$email]) && $users[$email] == $password) {
-        $Connected = true;
-    }
+try {
+    $bdd = new PDO('mysql:host=localhost;dbname=app', 'root', '');
+} catch (PDOException $e) {
+    echo 'Erreur : '. $e->getMessage();
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
-    setcookie('email', '', time() - 3600, "/");
-    setcookie('password', '', time() - 3600, "/");
-    header('Location: index.php');
-    exit();
-}
+$Connected = isset($_SESSION['user_id']);
+$email = $Connected ? $_SESSION['email'] : '';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,7 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
 </head>
 <body>
     <?php include 'assets/menu.php'; ?>
+
     <?php Vues($page); ?>
+
     <?php if ($Connected): ?>
         <div class="header2">
             <nav>
@@ -43,9 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
                     <li>
                         <h3>
                             <em>
-                            (✓) Connecté en tant que "<strong><?php echo($email) ?></strong>"
-                                <form action="index.php" method="post">
-                                <input type="hidden" name="logout" value="true">
+                            (✓) Connecté en tant que "<strong><?php echo htmlspecialchars($email); ?></strong>"
+                                <form action="index.php?page=logout" method="post">
                                 <input type="submit" value="(✘) Déconnexion">
                                 </form>
                             </em>
@@ -61,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
                     <li>
                         <h3>
                             <em>
-                            (✘) Vous n'êtes pas connecté ! 
+                            (✘) Vous n'êtes pas connecté !
                             </em>
                         </h3>
                     </li>
@@ -75,17 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['logout'])) {
                         <h3>
                             <em>
                                 <form action="index.php?page=login" method="post">
-                                »» Adresse Mail ««<br>
-                                <input type="text" name="email" required><br>
-                                »» Mot de passe ««<br>
+                                Adresse Mail:<br>
+                                <input type="email" name="email" required><br>
+                                Mot de passe:<br>
                                 <input type="password" name="password" required><br>
-                                <input type="submit" value="(✓) Connexion">
+                                <input type="submit" value="Connexion"><br>
                                 </form>
+                                <br>
+                                <a href="index.php?page=register">S'inscrire</a>
                             </em>
                         </h3>
-                        <h5>
-                            <li><a href="index.php?page=register">Pas de compte ?</a></li>
-                        </h5>
                     </li>
                 </ul>
             </nav>

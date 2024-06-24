@@ -9,8 +9,12 @@ function Titres($page) {
             return "Cannes";
         case 'poissons':
             return "Poissons";
-        case 'connexion':
+        case 'login':
             return "Connexion";
+        case 'logout':
+            return "Déconnexion";
+        case 'register':
+            return "Inscription";
         default:
             return "Accueil";
     }
@@ -30,8 +34,14 @@ function Vues($page) {
         case 'poissons':
             include 'views/poissons.php';
             break;
-        case 'connexion':
-            include 'views/connexion.php';
+        case 'login':
+            include 'views/login.php';
+            break;
+        case 'logout':
+            include 'views/logout.php';
+            break;
+        case 'register':
+            include 'views/register.php';
             break;
         default:
             include 'views/accueil.php';
