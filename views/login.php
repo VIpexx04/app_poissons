@@ -27,6 +27,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
+
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+$page = !empty($_GET['page']) ? $_GET['page'] : 'accueil';
+$title = Titres($page);
+
+try {
+    $bdd = new PDO('mysql:host=localhost;dbname=app', 'root', '');
+} catch (PDOException $e) {
+    echo 'Erreur : '. $e->getMessage();
+}
+
+$Connected = isset($_SESSION['user_id']);
+$email = $Connected ? $_SESSION['email'] : '';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -34,6 +53,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Connexion</title>
 </head>
 <body>
+    <div class="login">
+        <nav>
+            <ul class="navbar">
+                <li>
+                    <h3>
+                        <em>
+                            <form action="index.php?page=login" method="post">
+                                Adresse Mail:<br>
+                                <input type="email" name="email" required><br>
+                                Mot de passe:<br>
+                                <input type="password" name="password" required><br>
+                                <input type="submit" value="Connexion"><br>
+                            </form>
+                            <br>
+                            <a href="index.php?page=register">S'inscrire</a>
+                        </em>
+                    </h3>
+                </li>
+            </ul>
+        </nav>
+    </div>
     <?php if (isset($error)) echo '<p style="color:red;">' . $error . '</p>'; ?>
 </body>
 </html>

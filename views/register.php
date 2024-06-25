@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -32,26 +33,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Inscription</title>
 </head>
 <body>
-        <div class="header2">
-            <nav>
-                <ul class="navbar">
-                    <li>
-                        <h3>
-                            <em>
-                            (➤) Vous n'avez pas de compte !
-                            </em>
-                        </h3>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    <?php if (isset($error)) echo '<p style="color:red;">' . $error . '</p>'; ?>
-    <form action="index.php?page=register" method="post">
-        Adresse Mail:<br>
-        <input type="email" name="email" required><br>
-        Mot de passe:<br>
-        <input type="password" name="password" required><br>
-        <input type="submit" value="S'inscrire"><br>
-    </form>
+    <div class="register">
+        <nav>
+            <ul class="navbar">
+                <li>
+                    <h3>
+                        <em>
+                            <?php if (isset($error)) echo '<p style="color:red;">' . $error . '</p>'; ?>
+                            <form action="index.php?page=register" method="post">
+                                Adresse Mail:<br>
+                                <input type="email" name="email" required><br>
+                                Mot de passe:<br>
+                                <input type="password" name="password" required><br>
+                                <input type="submit" value="S'inscrire"><br>
+                            </form>
+                        </em>
+                    </h3>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </body>
 </html>
