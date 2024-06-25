@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Location: index.php');
             exit;
         } else {
-            $error = 'Erreur : Adresse E-Mail ou Mot de Passe invalide.';
+            $error = 'Erreur : E-Mail ou Mot de Passe invalide.';
         }
     } catch (PDOException $e) {
         echo 'Erreur : '. $e->getMessage();
@@ -51,29 +51,37 @@ $email = $Connected ? $_SESSION['email'] : '';
 <head>
     <meta charset="UTF-8">
     <title>Connexion</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="login">
-        <nav>
-            <ul class="navbar">
-                <li>
-                    <h3>
-                        <em>
-                            <form action="index.php?page=login" method="post">
-                                Adresse Mail:<br>
-                                <input type="email" name="email" required><br>
-                                Mot de passe:<br>
-                                <input type="password" name="password" required><br>
-                                <input type="submit" value="Connexion"><br>
-                            </form>
-                            <br>
-                            <a href="index.php?page=register">S'inscrire</a>
-                        </em>
-                    </h3>
-                </li>
-            </ul>
-        </nav>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="row w-100">
+            <div class="col-md-6 col-lg-4 mx-auto">
+                <div class="login">
+                    <form action="index.php?page=login" method="post">
+                        <div class="mb-3">
+                            <?php if (isset($error)) { ?>
+                                <div class="alert alert-danger mb-2" role="alert">
+                                    <?php echo $error; ?>
+                                </div>
+                            <?php } else { ?>
+                                <div class="alert alert-danger mb-2" role="alert">
+                                    Vous n'êtes pas connecté !
+                                </div>
+                            <?php } ?>
+                            <label for="mail" class="form-label">Adresse Mail</label>
+                            <input type="email" name="email" class="form-control" id="mail" placeholder="example@gmail.com" required>
+                            <label for="password" class="form-label">Mot de passe</label>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="MyS3cur1sedPassw0rd" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="submit" class="btn btn-primary w-100" aria-describedby="button-addon1" value="Connexion">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <?php if (isset($error)) echo '<p style="color:red;">' . $error . '</p>'; ?>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
