@@ -46,13 +46,7 @@ $Connected = isset($_SESSION['user_id']);
 $email = $Connected ? $_SESSION['email'] : '';
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Connexion</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet">
-</head>
+<html>
 <body>
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="row w-100">
@@ -78,6 +72,9 @@ $email = $Connected ? $_SESSION['email'] : '';
                             <input type="submit" class="btn btn-primary w-100" aria-describedby="button-addon1" value="Connexion">
                         </div>
                     </form>
+                    <div class="text-center">
+                        <a href="index.php?page=register" class="btn btn-link">Pas de compte ?</a>
+                    </div>
                 </div>
             </div>
         </div>

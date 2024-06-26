@@ -8,7 +8,7 @@
                 <ul class="navbar-nav">
                     <?php if ($Connected): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=accueil">ACCUEIL</a>
+                            <a class="nav-link" href="index.php?page=accueil">ACCUEIL</a><i class="bi bi-house"></i>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?page=appats">APPATS</a>

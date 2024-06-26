@@ -17,23 +17,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'email' => $email,
             'password' => $hashedPassword
         ]);
-        $_SESSION['user_id'] = $bdd->lastInsertId();
-        $_SESSION['email'] = $email;
-        header('Location: index.php');
+        
+        // Redirection vers la page de connexion si l'inscription est réussie
+        header('Location: index.php?page=login');
         exit;
+        
     } catch (PDOException $e) {
-        $error = 'Erreur : ' . $e->getMessage();
+        if ($e->errorInfo[1] == 1062) { // Code d'erreur pour doublon de clé
+            $error = 'Erreur : E-Mail déjà utilisée';
+        } else {
+            $error = 'Erreur : ' . $e->getMessage();
+        }
     }
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Inscription</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet">
-</head>
+<html>
 <body>
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="row w-100">
@@ -57,6 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="input-group mb-3">
                             <input type="submit" class="btn btn-primary w-100" aria-describedby="button-addon1" value="S'inscrire">
+                        </div>
+                        <div class="text-center">
+                            <a href="index.php?page=login" class="btn btn-link">Déjà un compte ?</a>
                         </div>
                     </form>
                 </div>
