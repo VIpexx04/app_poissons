@@ -1,13 +1,16 @@
 <?php
+require_once 'assets/functions.php';
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['user_id'])) {
-    // Rediriger vers la page de connexion
     header('Location: index.php?page=login');
     exit;
 }
+
+$cannes = getCannes();
 ?>
 
 <html>
@@ -41,30 +44,22 @@ if (!isset($_SESSION['user_id'])) {
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/canne_carpe.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Canne à Carpe</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/canne_spinning.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Canne Spinning</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/canne_coup.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Canne au Coup</p>
-                    </div>
-                </div>
-            </div>
+            <?php
+            if (!empty($cannes)) {
+                foreach ($cannes as $canne) {
+
+                    echo "<div class='col-md-4 col-sm-6 col-12'>";
+                    echo "<div class='card'>";
+                    echo "<div class='card-body'>";
+                    echo "<p class='card-text'>Nom : {$canne['nom']}</p>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+            } else {
+                echo "<p>Erreur : Aucune canne dans la BDD</p>";
+            }
+            ?>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

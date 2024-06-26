@@ -11,25 +11,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
     try {
-        $bdd = new PDO('mysql:host=localhost;dbname=app', 'root', '');
+        $bdd = bddConnect();
         $stmt = $bdd->prepare('INSERT INTO users (email, password) VALUES (:email, :password)');
         $stmt->execute([
             'email' => $email,
             'password' => $hashedPassword
         ]);
         
-        // Redirection vers la page de connexion si l'inscription est réussie
         header('Location: index.php?page=login');
         exit;
         
     } catch (PDOException $e) {
-        if ($e->errorInfo[1] == 1062) { // Code d'erreur pour doublon de clé
+        if ($e->errorInfo[1] == 1062) {
             $error = 'Erreur : E-Mail déjà utilisée';
         } else {
             $error = 'Erreur : ' . $e->getMessage();
         }
     }
 }
+
+$page = !empty($_GET['page']) ? $_GET['page'] : 'accueil';
+$title = Titres($page);
 ?>
 
 <html>

@@ -1,13 +1,16 @@
 <?php
+require_once 'assets/functions.php';
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['user_id'])) {
-    // Rediriger vers la page de connexion
     header('Location: index.php?page=login');
     exit;
 }
+
+$appats = getAppats();
 ?>
 
 <html>
@@ -41,70 +44,22 @@ if (!isset($_SESSION['user_id'])) {
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/mais.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Maïs</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/bouillette.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Bouillette</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/ver_de_terre.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Ver de Terre</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/pain.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Pain</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/vif.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Vif</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/leurre.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Leurre</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/pellet.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Pellet</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/asticot.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Asticot</p>
-                    </div>
-                </div>
-            </div>
+            <?php
+            if (!empty($appats)) {
+                foreach ($appats as $appat) {
+
+                    echo "<div class='col-md-4 col-sm-6 col-12'>";
+                    echo "<div class='card'>";
+                    echo "<div class='card-body'>";
+                    echo "<p class='card-text'>Nom : {$appat['nom']}</p>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+            } else {
+                echo "<p>Erreur : Aucun apppât dans la BDD</p>";
+            }
+            ?>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

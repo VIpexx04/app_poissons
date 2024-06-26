@@ -1,13 +1,16 @@
 <?php
+require_once 'assets/functions.php';
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['user_id'])) {
-    // Rediriger vers la page de connexion
     header('Location: index.php?page=login');
     exit;
 }
+
+$poissons = getPoissons();
 ?>
 
 <html>
@@ -41,54 +44,22 @@ if (!isset($_SESSION['user_id'])) {
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/carpe.png" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Carpe Commune</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/amour_blanc.png" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Amour Blanc</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/esturgeon.png" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Esturgeon</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/perche.png" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Perche</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/carassin.png" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Carassin</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card">
-                    <img src="images/truite.png" class="card-img-top">
-                    <div class="card-body">
-                        <p class="card-text">Nom : Truite Arc-En-Ciel</p>
-                    </div>
-                </div>
-            </div>
+            <?php
+            if (!empty($poissons)) {
+                foreach ($poissons as $poisson) {
+
+                    echo "<div class='col-md-4 col-sm-6 col-12'>";
+                    echo "<div class='card'>";
+                    echo "<div class='card-body'>";
+                    echo "<p class='card-text'>Nom : {$poisson['nom']}</p>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+            } else {
+                echo "<p>Erreur : Aucun poisson dans la BDD</p>";
+            }
+            ?>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
