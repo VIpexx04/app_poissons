@@ -23,28 +23,28 @@ function Titres($page) {
 function Vues($page) {
     switch ($page) {
         case 'appats':
-            include 'views/appats.php';
+            include 'views/categories/appats.php';
             break;
         case 'accueil':
-            include 'views/accueil.php';
+            include 'views/others/accueil.php';
             break;
         case 'cannes':
-            include 'views/cannes.php';
+            include 'views/categories/cannes.php';
             break;
         case 'poissons':
-            include 'views/poissons.php';
+            include 'views/categories/poissons.php';
             break;
         case 'login':
-            include 'views/login.php';
+            include 'views/systemes/login.php';
             break;
         case 'logout':
-            include 'views/logout.php';
+            include 'views/systemes/logout.php';
             break;
         case 'register':
-            include 'views/register.php';
+            include 'views/systemes/register.php';
             break;
         default:
-            include 'views/accueil.php';
+            include 'views/others/accueil.php';
             break;
     }
 }
