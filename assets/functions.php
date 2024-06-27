@@ -13,27 +13,31 @@ function bddConnect() {
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $bdd;
     } catch (PDOException $e) {
-        die('Erreur de connexion : ' . $e->getMessage());
+        die('Erreur : ' . $e->getMessage());
     }
 }
 
+function getPoissons() {
+    $bdd = bddConnect();
+    $sql = "SELECT poissons.id, poissons.nom, poissons.chemin_image, groupes.nom AS groupe_nom 
+            FROM poissons 
+            JOIN groupes ON poissons.groupe_id = groupes.id 
+            ORDER BY poissons.id";
+    $result = $bdd->query($sql);
+    return $result->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 function getAppats() {
     $bdd = bddConnect();
-    $sql = "SELECT id, nom FROM appats ORDER BY id";
+    $sql = "SELECT id, nom, chemin_image FROM appats ORDER BY id";
     $result = $bdd->query($sql);
     return $result->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function getCannes() {
     $bdd = bddConnect();
-    $sql = "SELECT id, nom FROM cannes ORDER BY id";
-    $result = $bdd->query($sql);
-    return $result->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function getPoissons() {
-    $bdd = bddConnect();
-    $sql = "SELECT id, nom FROM poissons ORDER BY id";
+    $sql = "SELECT id, nom, chemin_image FROM cannes ORDER BY id";
     $result = $bdd->query($sql);
     return $result->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -54,8 +58,6 @@ function Titres($page) {
             return "Déconnexion";
         case 'register':
             return "Inscription";
-        case 'search':
-            return "Rechercher";
         default:
             return "Accueil";
     }
@@ -83,9 +85,6 @@ function Vues($page) {
             break;
         case 'register':
             include 'views/systemes/register.php';
-            break;
-        case 'search':
-            include 'views/systemes/search.php';
             break;
         default:
             include 'views/others/accueil.php';

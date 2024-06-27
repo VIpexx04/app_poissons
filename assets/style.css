@@ -1,0 +1,64 @@
+.card {
+    margin: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card img {
+    width: 100%;
+    height: 300px;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.card-text {
+    margin: 5px 0;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
+
+#logo-fishseek {
+    width: 50px;
+    animation: zoomIn 3s infinite alternate;
+}
+
+@keyframes zoomIn2 {
+    from {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
+
+#icon-coeur{
+    width: 10px;
+    animation: zoomIn2 3s infinite alternate;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    border-top: 1px solid #e7e7e7;
+}
+.footer p {
+    margin: 10px 0 0;
+    color: #6c757d;
+}
