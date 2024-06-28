@@ -31,6 +31,7 @@ $poissons = getPoissons();
                 echo "<img src=\"images/poissons/{$poisson['chemin_image']}\" />";
                 echo "<p class='card-text'>Nom : {$poisson['nom']}</p>";
                 echo "<p class='card-text'>Famille : {$poisson['groupe_nom']}</p>";
+                echo "<a href='index.php?page=poissons&id=" . $poisson['id'] . "' class='btn btn-primary'>Clique Gauche ► Informations</a>";
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";

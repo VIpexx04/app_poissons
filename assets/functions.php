@@ -17,6 +17,20 @@ function bddConnect() {
     }
 }
 
+function getPoissonById($id) {
+    $bdd = bddConnect();
+    $query = $bdd->prepare('SELECT p.*, g.nom as groupe_nom FROM poissons p JOIN groupes g ON p.groupe_id = g.id WHERE p.id = :id');
+    $query->execute(['id' => $id]);
+    return $query->fetch(PDO::FETCH_ASSOC);
+}
+
+function getCannesByPoissonId($poisson_id) {
+    $bdd = bddConnect();
+    $query = $bdd->prepare('SELECT c.* FROM cannes c JOIN poisson_canne pc ON c.id = pc.canne_id WHERE pc.poisson_id = :poisson_id');
+    $query->execute(['poisson_id' => $poisson_id]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function getPoissons() {
     $bdd = bddConnect();
     $sql = "SELECT poissons.id, poissons.nom, poissons.chemin_image, groupes.nom AS groupe_nom 
@@ -26,7 +40,6 @@ function getPoissons() {
     $result = $bdd->query($sql);
     return $result->fetchAll(PDO::FETCH_ASSOC);
 }
-
 
 function getAppats() {
     $bdd = bddConnect();
@@ -75,7 +88,11 @@ function Vues($page) {
             include 'views/categories/cannes.php';
             break;
         case 'poissons':
-            include 'views/categories/poissons.php';
+            if (isset($_GET['id'])) {
+                include 'views/categories/poissons_informations.php';
+            } else {
+                include 'views/categories/poissons.php';
+            }
             break;
         case 'login':
             include 'views/systemes/login.php';
@@ -91,5 +108,4 @@ function Vues($page) {
             break;
     }
 }
-
 ?>

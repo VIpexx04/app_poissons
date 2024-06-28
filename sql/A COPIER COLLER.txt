@@ -35,6 +35,8 @@ poisson_id INTEGER NOT NULL,
 canne_id INTEGER NOT NULL
 );
 
+INSERT INTO poisson_canne (poisson_id, canne_id) VALUES (1, 1), (1, 2), (2, 2), (3, 3), (4, 1), (5, 2), (6, 3);
+
 CREATE TABLE poisson_appat (
 poisson_id INTEGER NOT NULL,
 appat_id INTEGER NOT NULL
